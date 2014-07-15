@@ -36,6 +36,10 @@ void homecycle() {
           }
         }
         
+	if ( xhome == true && yhome == true) {
+	  position(0,0);
+	  Serial.println("Set X/Y to 0/0 ...");
+	}
 
 }
 
