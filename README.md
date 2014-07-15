@@ -11,6 +11,9 @@ and https://www.marginallyclever.com
 
 What i have done:
 
-Remove the compatibility with Adafruids Motor Shield Version 1
-Split the functions into files.
-Add a new G-Command (G28 - do homing)
+ - Remove the compatibility with Adafruids Motor Shield Version 1
+ - Split the functions into files.
+ - Add a new G-Command (G28 - do homing)
+ - Add support for limit switches (X-Home, X-End, Y-Home, Y-End)
+
+
