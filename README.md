@@ -20,9 +20,9 @@ What i have done:
 TODO:
 --------------
 
- - Soft limit switch
-   - every step of the motors will counted and when the machine will move beyond its border the soft-switch will prevent further moves 
+ -Soft limit switch- DONE
+   -every step of the motors will counted and when the machine will move beyond its border the soft-switch will prevent further moves- 
  - add support for manual movement of X & Y (four buttons, maybe a fifth for fast move)
  - add servo for Z 
  - send actual position to PC-Software (VB.Net - has to be coded)
- - add steps/mm and/or steps/inch translator
+ -add steps/mm and/or steps/inch translator- DONE
