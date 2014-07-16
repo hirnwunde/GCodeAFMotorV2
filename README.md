@@ -17,3 +17,12 @@ What i have done:
  - Add support for limit switches (X-Home, X-End, Y-Home, Y-End)
 
 
+TODO:
+--------------
+
+ - Soft limit switch
+   - every step of the motors will counted and when the machine will move beyond its border the soft-switch will prevent moves 
+  
+ - add support for manual movement of X & Y (four buttons, maybe a fifth for fast move)
+ - add servo for Z 
+
