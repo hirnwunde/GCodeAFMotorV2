@@ -10,8 +10,8 @@
 // CONSTANTS
 //------------------------------------------------------------------------------
 
-//#define VERBOSE (1) // add to get a lot more serial output.
-#define VERSION (2) // firmware version
+#define VERBOSE (0) // add to get a lot more serial output.
+#define VERSION ("3-alpha1") // firmware version
 #define BAUD (57600) // How fast is the Arduino talking?
 #define MAX_BUF (64) // What is the longest message Arduino can store?
 #define STEPS_PER_TURN (200) // depends on your stepper motor. most are 200.
@@ -22,9 +22,14 @@
 #define LimitSwitchHomeY (4) // the
 #define LimitSwitchEndX (7)  // limit
 #define LimitSwitchEndY (8)  // switches
+#define UnitOfMeasurement (1)// 1 = millimeters / 0 = inches
+#define SteppsPerUnit (12)   // how many steps per in/mm 
+#define DimensionX (400)     // traverse path for X in mm/in (not steps!)
+#define DimensionY (600)     // traverse path for Y in mm/in (not steps!)
 
 boolean has_origin = false;
-
+float act_pos_x = 0;
+float act_pos_y = 0;
 
 //------------------------------------------------------------------------------
 // INCLUDES
@@ -93,6 +98,8 @@ void where() {
   output("Y",py);
   output("F",fr);
   Serial.println(mode_abs?"ABS":"REL");
+  if (UnitOfMeasurement == 0) { Serial.println("Unit system: Inches"); }
+  if (UnitOfMeasurement == 1) { Serial.println("Unit system: Millimeter"); }
 }
 
 
@@ -100,7 +107,8 @@ void where() {
 * display helpful information
 */
 void help() {
-  Serial.print(F("GcodeCNCDemo2AxisV2 "));
+  Serial.print(F("GcodeAFMotorV2"));
+  Serial.print("Version ");
   Serial.println(VERSION);
   Serial.println(F("Commands:"));
   Serial.println(F("G00 [X(steps)] [Y(steps)] [F(feedrate)]; - linear move"));
@@ -110,7 +118,7 @@ void help() {
   Serial.println(F("G90; - absolute mode"));
   Serial.println(F("G91; - relative mode"));
   Serial.println(F("G92 [X(steps)] [Y(steps)]; - change logical position"));
-  Serial.println(F("M18; - disable motors"));
+  Serial.println(F("M18; - release motors"));
   Serial.println(F("M100; - this help message"));
   Serial.println(F("M114; - report position and feedrate"));
   }
@@ -169,7 +177,7 @@ void loop() {
 
 
 /**
-* This file is part of GcodeCNCDemo.
+* This file was part of GcodeCNCDemo.
 *
 * GcodeCNCDemo is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by

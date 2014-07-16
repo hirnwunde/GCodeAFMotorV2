@@ -21,6 +21,7 @@ void homecycle() {
 	}
 	
         while(home_x_state == 0) { 
+          // call adafruits motorlibrary to bypass position checks from local onestep
 	  mX->onestep(BACKWARD,INTERLEAVE); // move a step
           Serial.print(".");
           home_x_state = digitalRead(LimitSwitchHomeX); // query status of limit switch
@@ -31,6 +32,7 @@ void homecycle() {
         }
 
         while(home_y_state == 0) { 
+          // call adafruits motorlibrary to bypass position checks from local onestep
 	  mY->onestep(BACKWARD,INTERLEAVE); // move a step
           Serial.print(".");
           home_y_state = digitalRead(LimitSwitchHomeY); // query status of limit switch

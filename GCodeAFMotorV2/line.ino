@@ -22,9 +22,7 @@ void line(float newx,float newy) {
   long i;
   long over=0;
 
-#ifdef VERBOSE
-  Serial.println(F("Start >"));
-#endif
+  if (VERBOSE == 1) { Serial.println(F("Start >")); }
 
   if(dx>dy) {
     for(i=0;i<dx;++i) {
@@ -48,9 +46,7 @@ void line(float newx,float newy) {
     }
   }
 
-#ifdef VERBOSE
-  Serial.println(F("< Done."));
-#endif
+  if (VERBOSE == 1) { Serial.println(F("< Done.")); }
 
   px=newx;
   py=newy;
