@@ -25,4 +25,4 @@ TODO:
   
  - add support for manual movement of X & Y (four buttons, maybe a fifth for fast move)
  - add servo for Z 
-
+ - send actual position to PC-Software[VB.Net] (software has to be coded)
