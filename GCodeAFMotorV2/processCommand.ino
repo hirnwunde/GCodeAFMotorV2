@@ -11,7 +11,7 @@ void processCommand() {
           parsenumber('Y',(mode_abs?py:0)) + (mode_abs?0:py) );
     break;
   case 4: pause(parsenumber('P',0)*1000); break; // dwell
-  case 28: homecycle(); break; // move home (X/Y 0)
+  case 28: homecycle(); break; // move to and set home (X/Y 0)
   case 90: mode_abs=1; break; // absolute mode
   case 91: mode_abs=0; break; // relative mode
   case 92: // set logical position

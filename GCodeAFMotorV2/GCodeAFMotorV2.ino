@@ -11,7 +11,7 @@
 //------------------------------------------------------------------------------
 
 #define VERBOSE (0) // add to get a lot more serial output.
-#define VERSION ("3-alpha1") // firmware version
+#define VERSION ("3-alpha2") // firmware version
 #define BAUD (57600) // How fast is the Arduino talking?
 #define MAX_BUF (64) // What is the longest message Arduino can store?
 #define STEPS_PER_TURN (200) // depends on your stepper motor. most are 200.
@@ -28,8 +28,8 @@
 #define DimensionY (600)     // traverse path for Y in mm/in (not steps!)
 
 boolean has_origin = false;
-float act_pos_x = 0;
-float act_pos_y = 0;
+float act_pos_x = 0.0;
+float act_pos_y = 0.0;
 
 //------------------------------------------------------------------------------
 // INCLUDES
