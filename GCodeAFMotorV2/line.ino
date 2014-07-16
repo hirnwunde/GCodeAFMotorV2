@@ -5,26 +5,16 @@
 **/
 void line(float newx,float newy) {
   
+  if (!has_origin) { 
+    Serial.println("No origin defined. Please perform a homing.");
+    return;
+  }
+  
   long dx=newx-px;
   long dy=newy-py;
   
   int dirx=dx>0?1:-1;
-  /*
-  if (dx > 0) {
-    int dirx = 1;
-  } else {
-    int dirx = -1;
-  }
-  */
-  
   int diry=dy>0?-1:1; // because the motors are mounted in opposite directions
-  /*
-  if (dy > 0) {
-    int diry = -1;
-  } else {
-	int diry = 1;
-  }
-  */
   
   dx=abs(dx);
   dy=abs(dy);

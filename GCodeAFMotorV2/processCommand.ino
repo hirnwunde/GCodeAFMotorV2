@@ -23,7 +23,7 @@ void processCommand() {
 
   cmd = parsenumber('M',-1);
   switch(cmd) {
-  case 18: // disable motors
+  case 18: // release motors
     release();
     break;
   case 100: help(); break;

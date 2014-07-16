@@ -18,15 +18,12 @@
 #define MIN_STEP_DELAY (50)
 #define MAX_FEEDRATE (500)
 #define MIN_FEEDRATE (1)
-int LimitSwitchHomeX = 0;
-int LimitSwitchHomeY = 0;
-int LimitSwitchEndX = 0;
-int LimitSwitchEndY = 0;
-int bXp_State = 0;
-int bXm_State = 0;
-int bYp_State = 0;
-int bYm_State = 0;
+#define LimitSwitchHomeX (2) // Pins of
+#define LimitSwitchHomeY (4) // the
+#define LimitSwitchEndX (7)  // limit
+#define LimitSwitchEndY (8)  // switches
 
+boolean has_origin = false;
 
 
 //------------------------------------------------------------------------------
@@ -144,14 +141,12 @@ void setup() {
  
   
   // limit switches defined at the beginning 
-  pinMode(2, INPUT);
-  pinMode(4, INPUT);
-  pinMode(7, INPUT);
-  pinMode(8, INPUT);
+  pinMode(LimitSwitchHomeX, INPUT);
+  pinMode(LimitSwitchHomeY, INPUT);
+  pinMode(LimitSwitchEndX, INPUT);
+  pinMode(LimitSwitchEndY, INPUT);
   
- 
-  
-   ready();
+  ready();
 }
 
 void loop() {
