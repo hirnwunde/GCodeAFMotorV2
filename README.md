@@ -15,14 +15,13 @@ What i have done:
  - Split the functions into files.
  - Add a new G-Command (G28 - do homing)
  - Add support for limit switches (X-Home, X-End, Y-Home, Y-End)
-
+ - Soft limit switch (don't leave your defined working space)
+ - steps/mm and steps/inch translator
 
 TODO:
 --------------
 
- -Soft limit switch- DONE
-   -every step of the motors will counted and when the machine will move beyond its border the soft-switch will prevent further moves- 
  - add support for manual movement of X & Y (four buttons, maybe a fifth for fast move)
  - add servo for Z 
  - send actual position to PC-Software (VB.Net - has to be coded)
- -add steps/mm and/or steps/inch translator- DONE
+ 
