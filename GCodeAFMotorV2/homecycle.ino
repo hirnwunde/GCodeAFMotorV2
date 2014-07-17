@@ -44,7 +44,7 @@ void homecycle() {
         
 	if ( xhome == true && yhome == true) {
           //move 20 steps away from limit switch
-          for (i = 0; i < 21; i++) {
+          for (int i = 0; i < 21; i++) {
             mX->onestep(FORWARD,INTERLEAVE);
             mY->onestep(FORWARD,INTERLEAVE);
           }
