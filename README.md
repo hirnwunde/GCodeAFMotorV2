@@ -15,8 +15,13 @@ What i have done:
  - Split the functions into files.
  - Add a new G-Command (G28 - do homing)
  - Add support for limit switches (X-Home, X-End, Y-Home, Y-End)
- - Soft limit switch (don't leave your defined working space)
+
+Work in proress:
+--------------
+
  - steps/mm and steps/inch translator
+ - Soft limit switch (don't leave your defined working space)
+ - remove support for relative mode (G91) for simplification the stepps/[mm/in] translation
 
 TODO:
 --------------
@@ -24,4 +29,5 @@ TODO:
  - add support for manual movement of X & Y (four buttons, maybe a fifth for fast move)
  - add servo for Z 
  - send actual position to PC-Software (VB.Net - has to be coded)
+ - add button for homing (must be pressed 3sec)
  
