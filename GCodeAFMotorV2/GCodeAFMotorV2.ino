@@ -10,8 +10,8 @@
 // CONSTANTS
 //------------------------------------------------------------------------------
 
-#define VERBOSE (1) // add to get a lot more serial output.
-#define VERSION ("3-alpha3") // firmware version
+#define VERBOSE (0) // add to get a lot more serial output.
+#define VERSION ("3-alpha4") // firmware version
 #define BAUD (57600) // How fast is the Arduino talking?
 #define MAX_BUF (64) // What is the longest message Arduino can store?
 #define STEPS_PER_TURN (200) // depends on your stepper motor. most are 200.
@@ -23,9 +23,10 @@
 #define LimitSwitchEndX (7)  // limit
 #define LimitSwitchEndY (8)  // switches
 #define UnitOfMeasurement (1)// 1 = millimeters / 0 = inches
-#define SteppsPerUnit (12)   // how many steps per in/mm 
+#define StepsPerUnit (35)   // how many steps per in/mm 
 #define DimensionX (400)     // traverse path for X in mm/in (not steps!)
 #define DimensionY (600)     // traverse path for Y in mm/in (not steps!)
+#define SendPosAfterMove (1)
 
 boolean has_origin = false;
 float act_pos_x = 0.0;
@@ -94,8 +95,8 @@ void output(char *code,float val) {
 * print the current position, feedrate, and absolute mode.
 */
 void where() {
-  output("X",px);
-  output("Y",py);
+  output("X",px / StepsPerUnit);
+  output("Y",py / StepsPerUnit);
   output("F",fr);
   if (UnitOfMeasurement == 0) { Serial.println("Unit system: Inches"); }
   if (UnitOfMeasurement == 1) { Serial.println("Unit system: Millimeter"); }

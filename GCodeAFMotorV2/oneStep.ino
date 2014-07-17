@@ -30,10 +30,10 @@ void onestep(int motor,int direction) {
 
     if (direction == 1){
       mX->onestep(FORWARD,INTERLEAVE);
-      act_pos_x = act_pos_x + (1 / SteppsPerUnit);
+      act_pos_x = act_pos_x + (1 / StepsPerUnit);
     } else {
       mX->onestep(BACKWARD,INTERLEAVE);
-      act_pos_x = act_pos_x - (1 / SteppsPerUnit);
+      act_pos_x = act_pos_x - (1 / StepsPerUnit);
     }
       
   } else {
@@ -42,10 +42,10 @@ void onestep(int motor,int direction) {
 
     if (direction == 1){
       mY->onestep(FORWARD,INTERLEAVE);
-      act_pos_y = act_pos_y + (1 / SteppsPerUnit);
+      act_pos_y = act_pos_y + (1 / StepsPerUnit);
     } else {
       mY->onestep(BACKWARD,INTERLEAVE);
-      act_pos_y = act_pos_y - (1 / SteppsPerUnit);
+      act_pos_y = act_pos_y - (1 / StepsPerUnit);
     }
   }
 }
