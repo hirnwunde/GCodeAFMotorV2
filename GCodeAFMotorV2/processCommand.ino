@@ -7,13 +7,13 @@ void processCommand() {
   case 0: // move linear
   case 1: // move linear
     feedrate(parsenumber('F',fr));
-    line( parsenumber('X',(mode_abs?px:0)) + (mode_abs?0:px),
-          parsenumber('Y',(mode_abs?py:0)) + (mode_abs?0:py) );
+    line( parsenumber('X',px),
+          parsenumber('Y',py) );
     break;
   case 4: pause(parsenumber('P',0)*1000); break; // dwell
   case 28: homecycle(); break; // move to and set home (X/Y 0)
-  case 90: mode_abs=1; break; // absolute mode
-  case 91: mode_abs=0; break; // relative mode
+  //case 90: mode_abs=1; break; // absolute mode
+  //case 91: mode_abs=0; break; // relative mode
   case 92: // set logical position
     position( parsenumber('X',0),
               parsenumber('Y',0) );

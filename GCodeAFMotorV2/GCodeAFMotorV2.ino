@@ -10,13 +10,13 @@
 // CONSTANTS
 //------------------------------------------------------------------------------
 
-#define VERBOSE (0) // add to get a lot more serial output.
-#define VERSION ("3-alpha2") // firmware version
+#define VERBOSE (1) // add to get a lot more serial output.
+#define VERSION ("3-alpha3") // firmware version
 #define BAUD (57600) // How fast is the Arduino talking?
 #define MAX_BUF (64) // What is the longest message Arduino can store?
 #define STEPS_PER_TURN (200) // depends on your stepper motor. most are 200.
 #define MIN_STEP_DELAY (50)
-#define MAX_FEEDRATE (500)
+#define MAX_FEEDRATE (800)
 #define MIN_FEEDRATE (1)
 #define LimitSwitchHomeX (2) // Pins of
 #define LimitSwitchHomeY (4) // the
@@ -57,7 +57,7 @@ float fr=0; // human version
 long step_delay; // machine version
 
 // settings
-char mode_abs=1; // absolute mode?
+//char mode_abs=1; // absolute mode?
 
 
 //------------------------------------------------------------------------------
@@ -97,7 +97,6 @@ void where() {
   output("X",px);
   output("Y",py);
   output("F",fr);
-  Serial.println(mode_abs?"ABS":"REL");
   if (UnitOfMeasurement == 0) { Serial.println("Unit system: Inches"); }
   if (UnitOfMeasurement == 1) { Serial.println("Unit system: Millimeter"); }
 }
@@ -115,8 +114,8 @@ void help() {
   Serial.println(F("G01 [X(steps)] [Y(steps)] [F(feedrate)]; - linear move"));
   Serial.println(F("G04 P[seconds]; - delay"));
   Serial.println(F("G28; - move to Home-Position/Origin"));
-  Serial.println(F("G90; - absolute mode"));
-  Serial.println(F("G91; - relative mode"));
+  //Serial.println(F("G90; - absolute mode"));
+  //Serial.println(F("G91; - relative mode"));
   Serial.println(F("G92 [X(steps)] [Y(steps)]; - change logical position"));
   Serial.println(F("M18; - release motors"));
   Serial.println(F("M100; - this help message"));
