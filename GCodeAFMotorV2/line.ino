@@ -10,11 +10,30 @@ void line(float newx,float newy) {
     return;
   }
   
+  if (digitalRead(LimitSwitchHomeX)) {
+    Serial.println("Hardware Limit Switch X Home Reached!");
+    return;
+  }
+  if (digitalRead(LimitSwitchHomeY)) {
+    Serial.println("Hardware Limit Switch Y Home Reached!");
+    return;
+  }
+  if (digitalRead(LimitSwitchEndX)) {
+    Serial.println("Hardware Limit Switch X End Reached!");
+    return;
+  }
+  if (digitalRead(LimitSwitchEndY)) {
+    Serial.println("Hardware Limit Switch Y End Reached!");
+    return;
+  }
+  
+    
+  int dirx, diry;
   long dx=newx-px;
   long dy=newy-py;
   
-  int dirx=dx>0?1:-1;
-  int diry=dy>0?-1:1; // because the motors are mounted in opposite directions
+  if (dx > 0) { dirx = 1; } else { dirx = -1; }
+  if (dy > 0) { diry = -1; } else { diry = 1; } // because the motors are mounted in opposite directions
   
   dx=abs(dx);
   dy=abs(dy);
@@ -23,7 +42,6 @@ void line(float newx,float newy) {
   long over=0;
 
   if (VERBOSE == 1) { Serial.println(F("Start >")); }
-
   if(dx>dy) {
     for(i=0;i<dx;++i) {
       onestep(1,dirx);
@@ -33,6 +51,7 @@ void line(float newx,float newy) {
         onestep(2,diry);
       }
       pause(step_delay);
+      
     }
   } else {
     for(i=0;i<dy;++i) {
@@ -45,10 +64,9 @@ void line(float newx,float newy) {
       pause(step_delay);
     }
   }
-
   if (VERBOSE == 1) { Serial.println(F("< Done.")); }
 
-  px = newx;
-  py = newy;
-  if (SendPosAfterMove == 1) { sendPos(); }
+  px = act_pos_x;
+  py = act_pos_y;
+  if (SendPosAfterMove == 1 && SendPosWhileMove == 0) { sendPos(); }
 }
