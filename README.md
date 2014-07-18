@@ -18,11 +18,12 @@ What i have done:
  - steps/[mm | in] translator
  - remove support for relative mode (G91) for simplification the stepps/[mm | in] translation
  - send actual position to PC-Software (VB.Net [the only language i can code GUIs ;)] - has to be coded)
+ - Soft limit switch (don't leave your defined working space)
  
 Work in proress:
 --------------
 
- - Soft limit switch (don't leave your defined working space)
+ - nothing ... have to wait for hardware so i can assemble the plotter. All I've done now was without any mechanics.
 
 TODO:
 --------------
