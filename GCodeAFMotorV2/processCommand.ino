@@ -1,6 +1,6 @@
 /**
-* Read the input buffer and find any recognized commands. One G or M command per line.
-*/
+ * Read the input buffer and find any recognized commands. One G or M or V command per line.
+ */
 
 void processCommand() {
   int cmd = parsenumber('G',-1);
@@ -41,19 +41,41 @@ void processCommand() {
   case 18: // release motors
     release();
     break;
-  
+
   case 100: 
     help(); 
     break;
-  
+
   case 114: 
     where(); 
     break;
-  
+
   default: 
     break;
   }
+
+  if (hwCNC == 1) {
+    cmd = parsenumber('V',-1);
+    switch(cmd) {
+
+    case 1: pc_interface("CONFIG"); break;
+    case 2: pc_interface("POSITION"); break;
+
+    case 121: Serial.println("V121 - X+"); break;
+    case 122: Serial.println("V122 - X-"); break;
+    case 123: Serial.println("V123 - Y+"); break;
+    case 124: Serial.println("V124 - Y-"); break;
+    case 125: Serial.println("V125 - X+++"); break;
+    case 126: Serial.println("V126 - X---"); break;
+    case 127: Serial.println("V127 - Y+++"); break;
+    case 128: Serial.println("V128 - Y---"); break;
+
+    default:
+      break;
+    }
+  }
 }
+
 
 
 
