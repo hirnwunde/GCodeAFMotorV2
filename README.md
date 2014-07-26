@@ -1,3 +1,6 @@
+Last working version: 3-alpha2
+https://github.com/hirnwunde/GCodeAFMotorV2/tree/a5102afc4c3907ad6785360e4cf83b2b6bd6a8ae
+
 GCodeAFMotorV2
 ==============
 
