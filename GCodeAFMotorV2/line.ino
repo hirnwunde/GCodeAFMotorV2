@@ -10,6 +10,9 @@ void line(float newx,float newy) {
     return;
   }
   
+  if ( px != newx) { newx = newx * SteppsPerUnit; }
+  if ( py != newy) { newy = newy * SteppsPerUnit; }
+
   long dx=newx-px;
   long dy=newy-py;
   
@@ -48,7 +51,6 @@ void line(float newx,float newy) {
 
   if (VERBOSE == 1) { Serial.println(F("< Done.")); }
 
-  px = newx;
-  py = newy;
-  if (SendPosAfterMove == 1) { sendPos(); }
+  px = newx / SteppsPerUnit;
+  py = newy / SteppsPerUnit;
 }
