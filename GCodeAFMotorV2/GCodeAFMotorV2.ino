@@ -7,15 +7,14 @@
 
 
 //------------------------------------------------------------------------------
-// Options
+// CONSTANTS
 //------------------------------------------------------------------------------
 
 #define VERBOSE (0) // add to get a lot more serial output.
-#define VERSION ("3-alpha6") // firmware version
+#define VERSION ("3-alpha5") // firmware version
 #define BAUD (57600) // How fast is the Arduino talking?
 #define MAX_BUF (64) // What is the longest message Arduino can store?
 #define STEPS_PER_TURN (200) // depends on your stepper motor. most are 200.
-#define MOTOR_MODE (1) // SINGLE (4), INTERLEAVE (1), MICROSTEP (2), DOUBLE(3),
 #define MIN_STEP_DELAY (25)
 #define MAX_FEEDRATE (800)
 #define MIN_FEEDRATE (1)
@@ -28,8 +27,6 @@
 #define DimensionY (600)     // traverse path for Y in mm/in (not steps!)
 #define SendPosAfterMove (0)
 #define SendPosWhileMove (1)
-#define hwCNC (1)            // accept commands from and send infos to hwCNC (PC-Software)
-#define SendCommandBack (0)  // Send command back to console so you know the Arduino got the message
 
 boolean has_origin = false;
 float act_pos_x = 0.0;
@@ -90,10 +87,8 @@ void release() {
 * @input val the float.
 */
 void output(char *code,float val) {
-    Serial.print("output(): ");  
-    Serial.print(code);
-    Serial.println(val);
-  
+  Serial.print(code);
+  Serial.println(val);
 }
 
 /**
@@ -118,11 +113,13 @@ void help() {
   Serial.println(F("G01 [X(steps)] [Y(steps)] [F(feedrate)]; - linear move"));
   Serial.println(F("G04 P[seconds]; - delay"));
   Serial.println(F("G28; - move to Home-Position/Origin"));
+  //Serial.println(F("G90; - absolute mode"));
+  //Serial.println(F("G91; - relative mode"));
   Serial.println(F("G92 [X(steps)] [Y(steps)]; - change logical position"));
   Serial.println(F("M18; - release motors"));
   Serial.println(F("M100; - this help message"));
   Serial.println(F("M114; - report position and feedrate"));
-}
+  }
 
 
 
@@ -131,7 +128,7 @@ void help() {
 */
 void ready() {
   sofar=0; // clear input buffer
-  //Serial.print(F(">")); // signal ready to receive input
+  Serial.print(F(">")); // signal ready to receive input
 }
 
 
@@ -162,7 +159,7 @@ void loop() {
   // listen for serial commands
   while(Serial.available() > 0) { // if something is available
     char c=Serial.read(); // get it
-    if (SendCommandBack == 1) { Serial.print(c); } // repeat it back so I know you got the message
+    Serial.print(c); // repeat it back so I know you got the message
     if(sofar<MAX_BUF) buffer[sofar++]=c; // store it
     if(buffer[sofar-1]==';') break; // entire message received
   }
@@ -170,7 +167,7 @@ void loop() {
   if(sofar>0 && buffer[sofar-1]==';') {
     // we got a message and it ends with a semicolon
     buffer[sofar]=0; // end the buffer so string functions work right
-    //Serial.print(F("\r\n")); // echo a return character for humans
+    Serial.print(F("\r\n")); // echo a return character for humans
     processCommand(); // do something with the command
     ready();
   }
