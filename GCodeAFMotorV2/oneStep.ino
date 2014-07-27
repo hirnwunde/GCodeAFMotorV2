@@ -7,19 +7,19 @@
 *  - preparations for unit measuring system 
 **/
 void onestep(int motor,int direction) {
-    
+  
   // maybe redundant but better save then sorry
   if (!has_origin) { 
     Serial.println("No origin defined. Please perform a homing.");
     return;
   }
   
-  if (act_pos_x >= (DimensionX - (1.0 / StepsPerUnit))) {
+  if (act_pos_x >= DimensionX) {
     Serial.println("X-Axis on software-end! No movement beyond defined workspace.");
     return;
   }
 
-  if (act_pos_y >= (DimensionY - (1.0 / StepsPerUnit))) {
+  if (act_pos_y >= DimensionY) {
     Serial.println("Y-Axis on software-end! No movement beyond defined workspace.");
     return;
   }
@@ -30,29 +30,22 @@ void onestep(int motor,int direction) {
 
     if (direction == 1){
       mX->onestep(FORWARD,INTERLEAVE);
-      act_pos_x += (1.0 / StepsPerUnit);
+      act_pos_x = act_pos_x + (1 / StepsPerUnit);
     } else {
       mX->onestep(BACKWARD,INTERLEAVE);
-      act_pos_x -= (1.0 / StepsPerUnit);
+      act_pos_x = act_pos_x - (1 / StepsPerUnit);
     }
-
+      
   } else {
 
     if (VERBOSE == 1) { Serial.print('Y'); }
 
     if (direction == 1){
       mY->onestep(FORWARD,INTERLEAVE);
-      act_pos_y += (1.0 / StepsPerUnit);
+      act_pos_y = act_pos_y + (1 / StepsPerUnit);
     } else {
       mY->onestep(BACKWARD,INTERLEAVE);
-      act_pos_y -= (1.0 / StepsPerUnit);
+      act_pos_y = act_pos_y - (1 / StepsPerUnit);
     }
-  }
-  
-  if (SendPosWhileMove == 1) { 
-    Serial.print("POS_TRK-X");
-    Serial.print(act_pos_x);
-    Serial.print(",Y");
-    Serial.println(act_pos_y); 
   }
 }
