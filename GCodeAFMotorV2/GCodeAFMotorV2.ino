@@ -22,10 +22,13 @@
 #define LimitSwitchHomeY (4) // the
 #define LimitSwitchEndX (7)  // limit
 #define LimitSwitchEndY (8)  // switches
-#define UnitOfMeasurement (1)// 1 = millimeters / 0 = inches
-#define SteppsPerUnit (12)   // how many steps per in/mm 
+#define StepsPerUnit (12)   // how many steps per in/mm 
 #define DimensionX (400)     // traverse path for X in mm/in (not steps!)
 #define DimensionY (600)     // traverse path for Y in mm/in (not steps!)
+#define SendPosAfterMove (0)
+#define SendPosWhileMove (1)
+#define hwCNC (1)            // accept commands from and send infos to hwCNC (PC-Software)
+#define SendCommandBack (0)  // Send command back to console so you know the Arduino got the message
 
 boolean has_origin = false;
 float act_pos_x = 0.0;
@@ -98,8 +101,6 @@ void where() {
   output("Y",py);
   output("F",fr);
   Serial.println(mode_abs?"ABS":"REL");
-  if (UnitOfMeasurement == 0) { Serial.println("Unit system: Inches"); }
-  if (UnitOfMeasurement == 1) { Serial.println("Unit system: Millimeter"); }
 }
 
 

@@ -10,11 +10,28 @@ void line(float newx,float newy) {
     return;
   }
   
-  long dx=newx-px;
-  long dy=newy-py;
+  if (digitalRead(LimitSwitchHomeX)) {
+    Serial.println("Hardware Limit Switch X Home Reached!");
+    return;
+  }
+  if (digitalRead(LimitSwitchHomeY)) {
+    Serial.println("Hardware Limit Switch Y Home Reached!");
+    return;
+  }
+  if (digitalRead(LimitSwitchEndX)) {
+    Serial.println("Hardware Limit Switch X End Reached!");
+    return;
+  }
+  if (digitalRead(LimitSwitchEndY)) {
+    Serial.println("Hardware Limit Switch Y End Reached!");
+    return;
+  }
+  int dirx, diry;    
+  long dx=newx-(px * StepsPerUnit);
+  long dy=newy-(py * StepsPerUnit);
   
-  int dirx=dx>0?1:-1;
-  int diry=dy>0?-1:1; // because the motors are mounted in opposite directions
+  if (dx > 0) { dirx = 1; } else { dirx = -1; }
+  if (dy > 0) { diry = 1; } else { diry = -1; } // because the motors are mounted in opposite directions
   
   dx=abs(dx);
   dy=abs(dy);
@@ -47,7 +64,8 @@ void line(float newx,float newy) {
   }
 
   if (VERBOSE == 1) { Serial.println(F("< Done.")); }
-
-  px=newx;
-  py=newy;
+  if (hwCNC == 1) { Serial.println("LNMVEND"); }
+  px = act_pos_x;
+  py = act_pos_y;
+  if (SendPosAfterMove == 1 && SendPosWhileMove == 0) { sendPos(); }
 }

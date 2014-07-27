@@ -27,7 +27,16 @@ Work in proress:
 TODO:
 --------------
 
+<<<<<<< HEAD
  - add support for manual movement of X & Y (four buttons, maybe a fifth for fast move)
  - add servo for Z 
  - add button for homing (must be pressed 3sec)
  
+=======
+ - Soft limit switch
+   - every step of the motors will counted and when the machine will move beyond its border the soft-switch will prevent further moves 
+ - add support for manual movement of X & Y (four buttons, maybe a fifth for fast move)
+ - add servo for Z 
+ - send actual position to PC-Software (VB.Net - has to be coded)
+ - add steps/mm and/or steps/inch translator
+>>>>>>> parent of 9642487... Update README.md
