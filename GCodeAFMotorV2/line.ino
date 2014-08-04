@@ -10,22 +10,25 @@ void line(float newx,float newy) {
     return;
   }
   
-  if (digitalRead(LimitSwitchHomeX)) {
-    Serial.println("Hardware Limit Switch X Home Reached!");
-    return;
+  if (HardwareEndSwithces) {
+    if (digitalRead(LimitSwitchHomeX)) {
+      Serial.println("Hardware Limit Switch X Home Reached!");
+      return;
+    }
+    if (digitalRead(LimitSwitchHomeY)) {
+      Serial.println("Hardware Limit Switch Y Home Reached!");
+      return;
+    }
+    if (digitalRead(LimitSwitchEndX)) {
+      Serial.println("Hardware Limit Switch X End Reached!");
+      return;
+    }
+    if (digitalRead(LimitSwitchEndY)) {
+      Serial.println("Hardware Limit Switch Y End Reached!");
+      return;
+    }
   }
-  if (digitalRead(LimitSwitchHomeY)) {
-    Serial.println("Hardware Limit Switch Y Home Reached!");
-    return;
-  }
-  if (digitalRead(LimitSwitchEndX)) {
-    Serial.println("Hardware Limit Switch X End Reached!");
-    return;
-  }
-  if (digitalRead(LimitSwitchEndY)) {
-    Serial.println("Hardware Limit Switch Y End Reached!");
-    return;
-  }
+  
   int dirx, diry;    
   long dx=newx-(px * StepsPerUnit);
   long dy=newy-(py * StepsPerUnit);

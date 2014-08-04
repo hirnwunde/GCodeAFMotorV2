@@ -41,37 +41,27 @@ void processCommand() {
 
   cmd = parsenumber('M',-1);
   switch(cmd) {
-  case 18: // release motors
-    release();
-    break;
-  case 100: 
-    help(); 
-    break;
-  case 114: 
-    where(); 
-    break;
-  default: 
-    break;
+    case 18: release(); break;
+    // case 30: programEnd(); break; 
+    case 100: help(); break;
+    case 114: where(); break;
+    default: break;
   }
   
   if (hwCNC == 1) {
     cmd = parsenumber('V',-1);
     switch(cmd) {
-
-    case 1: pcinterface("CONFIG"); break;
-    case 2: pcinterface("POSITION"); break;
-
-    case 121: Serial.println("V121 - X+"); break;
-    case 122: Serial.println("V122 - X-"); break;
-    case 123: Serial.println("V123 - Y+"); break;
-    case 124: Serial.println("V124 - Y-"); break;
-    case 125: Serial.println("V125 - X+++"); break;
-    case 126: Serial.println("V126 - X---"); break;
-    case 127: Serial.println("V127 - Y+++"); break;
-    case 128: Serial.println("V128 - Y---"); break;
-
-    default:
-      break;
+      case 1: pcinterface("CONFIG"); break;
+      case 2: pcinterface("POSITION"); break;
+      case 121: pcinterface("XPLUS"); break;
+      case 122: pcinterface("XMINUS"); break;
+      case 123: pcinterface("YPLUS"); break;
+      case 124: pcinterface("YMINUS"); break;
+      case 125: pcinterface("XPLUSPLUS"); break;
+      case 126: pcinterface("XMINUSMINUS"); break;
+      case 127: pcinterface("YPLUSPLUS"); break;
+      case 128: pcinterface("YMINUSMINUS"); break;
+      default: break;
     }
   }
 }
