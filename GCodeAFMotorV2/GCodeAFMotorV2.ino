@@ -18,10 +18,6 @@
 #define MIN_STEP_DELAY (50)
 #define MAX_FEEDRATE (500)
 #define MIN_FEEDRATE (1)
-#define LimitSwitchHomeX (2) // Pins of
-#define LimitSwitchHomeY (4) // the
-#define LimitSwitchEndX (7)  // limit
-#define LimitSwitchEndY (8)  // switches
 #define StepsPerUnit (4)   // how many steps per in/mm 
 #define DimensionX (400)     // traverse path for X in mm/in (not steps!)
 #define DimensionY (600)     // traverse path for Y in mm/in (not steps!)
@@ -29,7 +25,11 @@
 #define SendPosWhileMove (1)
 #define hwCNC (1)            // accept commands from and send infos to hwCNC (PC-Software)
 #define SendCommandBack (0)  // Send command back to console so you know the Arduino got the message
-#define HardwareEndSwithces (0) // did we have hardware end limit switches?
+#define HardwareEndSwitches (0) // did we have hardware end limit switches?
+#define LimitSwitchHomeX (2) // Pins of
+#define LimitSwitchHomeY (4) // the
+#define LimitSwitchEndX (7)  // limit
+#define LimitSwitchEndY (8)  // switches
 
 boolean has_origin = false;
 float act_pos_x = 0.0;
@@ -109,7 +109,7 @@ void where() {
 * display helpful information
 */
 void help() {
-  Serial.print(F("GcodeAFMotorV2"));
+  Serial.println(F("GcodeAFMotorV2"));
   Serial.print("Version ");
   Serial.println(VERSION);
   Serial.println(F("Commands:"));
@@ -149,12 +149,13 @@ void setup() {
   position(0,0); // set staring position
   feedrate(500); // set default speed
  
-  
-  // limit switches defined at the beginning 
-  pinMode(LimitSwitchHomeX, INPUT);
-  pinMode(LimitSwitchHomeY, INPUT);
-  pinMode(LimitSwitchEndX, INPUT);
-  pinMode(LimitSwitchEndY, INPUT);
+  if (HardwareEndSwitches) {
+    // limit switches defined at the beginning 
+    pinMode(LimitSwitchHomeX, INPUT);
+    pinMode(LimitSwitchHomeY, INPUT);
+    pinMode(LimitSwitchEndX, INPUT);
+    pinMode(LimitSwitchEndY, INPUT);
+  }
   
   ready();
 }

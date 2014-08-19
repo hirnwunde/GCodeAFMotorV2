@@ -10,7 +10,7 @@ void line(float newx,float newy) {
     return;
   }
   
-  if (HardwareEndSwithces) {
+  if (HardwareEndSwitches) {
     if (digitalRead(LimitSwitchHomeX)) {
       Serial.println("Hardware Limit Switch X Home Reached!");
       return;
