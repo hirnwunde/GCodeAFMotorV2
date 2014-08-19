@@ -11,7 +11,7 @@
 //------------------------------------------------------------------------------
 
 #define VERBOSE (0) // add to get a lot more serial output.
-#define VERSION ("3-alpha2") // firmware version
+#define VERSION ("3-rc1") // firmware version
 #define BAUD (57600) // How fast is the Arduino talking?
 #define MAX_BUF (64) // What is the longest message Arduino can store?
 #define STEPS_PER_TURN (200) // depends on your stepper motor. most are 200.
@@ -22,14 +22,14 @@
 #define LimitSwitchHomeY (4) // the
 #define LimitSwitchEndX (7)  // limit
 #define LimitSwitchEndY (8)  // switches
-#define StepsPerUnit (36)   // how many steps per in/mm 
+#define StepsPerUnit (4)   // how many steps per in/mm 
 #define DimensionX (400)     // traverse path for X in mm/in (not steps!)
 #define DimensionY (600)     // traverse path for Y in mm/in (not steps!)
 #define SendPosAfterMove (0)
 #define SendPosWhileMove (1)
 #define hwCNC (1)            // accept commands from and send infos to hwCNC (PC-Software)
 #define SendCommandBack (0)  // Send command back to console so you know the Arduino got the message
-#define HardwareEndSwithces (0) // did e have hardware end limit switches?
+#define HardwareEndSwithces (0) // did we have hardware end limit switches?
 
 boolean has_origin = false;
 float act_pos_x = 0.0;
@@ -147,7 +147,7 @@ void setup() {
   
   help(); // say hello
   position(0,0); // set staring position
-  feedrate(200); // set default speed
+  feedrate(500); // set default speed
  
   
   // limit switches defined at the beginning 
@@ -179,7 +179,8 @@ void loop() {
 
 
 /**
-* This file was part of GcodeCNCDemo.
+* This file _was_ part of GcodeCNCDemo.
+* After many changes it is part of GCodeAFMotorV2
 *
 * GcodeCNCDemo is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by

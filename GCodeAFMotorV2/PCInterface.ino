@@ -1,19 +1,19 @@
 void pcinterface(String WhatToDo) {
 
   if (WhatToDo == "CONFIG") {
+    Serial.print("V:");
     Serial.print(VERSION);
-    Serial.print(";");
+    Serial.print(";MAXFEED:");
     Serial.print(MAX_FEEDRATE);
-    Serial.print(";");
+    Serial.print(";MINFEED:");
     Serial.print(MIN_FEEDRATE);
-    Serial.print(";");
+    Serial.print(";DimX:");
     Serial.print(DimensionX);
-    Serial.print(";");
+    Serial.print(";DimY:");
     Serial.print(DimensionY);
-    Serial.print(";");
+    Serial.print(";SpU:");
     Serial.print(StepsPerUnit);
     Serial.println();
-    
   }
   
   if (WhatToDo == "POSITION") {
