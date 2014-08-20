@@ -25,7 +25,7 @@ TODO:
  - add support for manual movement of X & Y (four buttons, maybe a fifth for fast move)
  - add servo for Z 
  - add button for homing (must be pressed 3sec)
- - add option more for HardwareEndSwitches (0 = no switches, 1 = Home- and End-Switches, 2 = only Home-Switches, 3 = only End-Switches)
+ - add option for more HardwareEndSwitches (0 = no switches, 1 = Home- and End-Switches, 2 = only Home-Switches, 3 = only End-Switches)
 
 
 You can send commands to GCodeAFMotorV2 over Serial or with PC-Software hwCNC (see https://github.com/hirnwunde/hwCNC)
