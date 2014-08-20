@@ -19,14 +19,12 @@ What i have done:
  - send actual position to PC-Software (see https://github.com/hirnwunde/hwCNC)
  - Soft limit switch (don't leave your defined working space)
  
-Work in progress:
---------------
-
- - ATM I'm working on the PC-Software - see https://github.com/hirnwunde/hwCNC
-
 TODO:
 --------------
 
  - add support for manual movement of X & Y (four buttons, maybe a fifth for fast move)
  - add servo for Z 
  - add button for homing (must be pressed 3sec)
+
+
+You can send commands to GCodeAFMotorV2 over Serial or with PC-Software hwCNC (see https://github.com/hirnwunde/hwCNC)
