@@ -57,6 +57,7 @@ void homecycle() {
       act_pos_y = 0.0;
       has_origin = true;
       Serial.println("Set X/Y to 0/0 ...");
+      sendPos();
     }
 
   }

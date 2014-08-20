@@ -11,21 +11,21 @@
 //------------------------------------------------------------------------------
 
 #define VERBOSE (0) // add to get a lot more serial output.
-#define VERSION ("3-rc1") // firmware version
+#define VERSION ("3-rc2") // firmware version
 #define BAUD (57600) // How fast is the Arduino talking?
 #define MAX_BUF (64) // What is the longest message Arduino can store?
 #define STEPS_PER_TURN (200) // depends on your stepper motor. most are 200.
 #define MIN_STEP_DELAY (50)
 #define MAX_FEEDRATE (500)
 #define MIN_FEEDRATE (1)
-#define StepsPerUnit (4)   // how many steps per in/mm 
+#define StepsPerUnit (56)   // how many steps per in/mm 
 #define DimensionX (400)     // traverse path for X in mm/in (not steps!)
 #define DimensionY (600)     // traverse path for Y in mm/in (not steps!)
 #define SendPosAfterMove (0)
 #define SendPosWhileMove (1)
 #define hwCNC (1)            // accept commands from and send infos to hwCNC (PC-Software)
 #define SendCommandBack (0)  // Send command back to console so you know the Arduino got the message
-#define HardwareEndSwitches (0) // did we have hardware end limit switches?
+#define HardwareEndSwitches (1) // did we have hardware end limit switches?
 #define LimitSwitchHomeX (2) // Pins of
 #define LimitSwitchHomeY (4) // the
 #define LimitSwitchEndX (7)  // limit
