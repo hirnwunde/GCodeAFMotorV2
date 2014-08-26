@@ -33,6 +33,7 @@ void processCommand() {
     act_pos_y = 0.0;
     has_origin = true;
     Serial.println("WARNING! Machine has NO real origin!! Set X/Y to 0/0 ...");
+    if (hwCNC) { sendPos(); }
     break;
 
   default: 
